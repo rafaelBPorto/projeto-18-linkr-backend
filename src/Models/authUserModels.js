@@ -8,6 +8,6 @@ export const signUpModel = joi.object({
 });
 
 export const signInModel = joi.object({
-  email: joi.string().email().required,
+  email: joi.string().email().required(),
   password: joi.string().required()
 });
