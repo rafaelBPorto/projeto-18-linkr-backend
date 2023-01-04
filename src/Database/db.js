@@ -4,12 +4,9 @@ dotenv.config();
 
 const { Pool } = pkg;
 
-const connectionDB = new Pool({
-    host: 'localhost',
-    port: 5432,
-    user: 'postgres',
-    password: 'root',
-    database: 'linkr'
-  });
+const connectionDb = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true,
+});
 
-  export default connectionDB;
+export default connectionDb;
