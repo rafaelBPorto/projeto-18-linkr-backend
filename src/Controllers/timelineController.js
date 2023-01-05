@@ -1,6 +1,21 @@
-export async function timelineController(req, res){
-    const userId = res.locals.session.user_id
-    console.log("user id: ", userId)
+import insertPublishPost from "../Repository/publishPostRepository.js";
 
-    res.send(`userId ${userId}`);
+export async function timelineController(req, res) {
+    const session = res.locals.session
+
+    res.send(session);
+}
+
+export async function publishPostController(req, res) {
+    const userId = res.locals.session.user_id;
+    const { link, description } = req.body;
+    try {
+        const errorPost = await insertPublishPost(userId, link, description)
+        if (errorPost) {
+            return res.status(500).send(errorPost);
+        }
+        res.sendStatus(201);
+    } catch (error) {
+        return res.status(500).send(error.message);
+    }
 }
