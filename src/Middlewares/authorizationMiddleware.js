@@ -19,7 +19,7 @@ export async function authorizationToken(req, res, next) {
 
         res.locals.session = session
     } catch (error) {
-        res.status(500).send(error.message);
+        return res.status(500).send(error.message);
     }
 
     next();
