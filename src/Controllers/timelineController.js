@@ -8,13 +8,12 @@ export async function timelineController(req, res) {
 
 export async function publishPostController(req, res) {
     const userId = res.locals.session.user_id;
-    const{link, description} = req.body;
+    const { link, description } = req.body;
     try {
-      const errorPost = await insertPublishPost(userId, link, description)
-        if(errorPost){
+        const errorPost = await insertPublishPost(userId, link, description)
+        if (errorPost) {
             return res.status(500).send(errorPost);
         }
-
         res.sendStatus(201);
     } catch (error) {
         return res.status(500).send(error.message);
