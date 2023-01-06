@@ -1,6 +1,6 @@
 
 
-export async function getHashtagMiddleware(req, res, next) {
+export async function getPostByHashtagMiddleware(req, res, next) {
   const { hashtag } = req.params;
 
   try {

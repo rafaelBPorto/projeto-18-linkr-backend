@@ -1,11 +1,11 @@
-import { getHashtagByName } from "../Repository/hashtagRepository.js";
+import {  getPostByHashtagRepository } from "../Repository/hashtagRepository.js";
 
 
-export async function getHashtagController (req, res) {
+export async function getPostByHashtagController (req, res) {
     const {hashtag} = res.locals;
     
     try {
-       const response = await getHashtagByName(hashtag);
+       const response = await getPostByHashtagRepository(hashtag);
        
        if (!response.rows[0]) {
         return res.sendStatus(404);

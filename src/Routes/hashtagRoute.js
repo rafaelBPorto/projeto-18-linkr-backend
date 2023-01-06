@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { getHashtagController } from "../Controllers/hashtagController.js";
-import { getHashtagMiddleware } from "../Middlewares/hashtagValidationMiddleware.js";
+import {  getPostByHashtagController } from "../Controllers/hashtagController.js";
+import {  getPostByHashtagMiddleware } from "../Middlewares/hashtagValidationMiddleware.js";
 
 const router = Router();
 
-router.get("/hashtag/:hashtag", getHashtagMiddleware, getHashtagController);
+router.get("/hashtag/:hashtag", getPostByHashtagMiddleware, getPostByHashtagController);
 
 export default router;
