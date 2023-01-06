@@ -6,6 +6,7 @@ export function getPostByHashtagRepository (hashtag) {
     users.name, users.photo
     FROM posts
     JOIN users ON users.id = posts.user_id
-    WHERE description ILIKE $1`,
-    [`%#${hashtag} %`])
+    WHERE description ILIKE $1 OR
+    description ILIKE $2`,
+    [`%#${hashtag} %`, `%#${hashtag}`])
 }
