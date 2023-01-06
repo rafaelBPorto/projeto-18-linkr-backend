@@ -1,4 +1,3 @@
-import { hash } from "bcrypt";
 import connectionDb from "../Database/db.js";
 
 export function getPostByHashtagRepository (hashtag) {
@@ -8,5 +7,5 @@ export function getPostByHashtagRepository (hashtag) {
     FROM posts
     JOIN users ON users.id = posts.user_id
     WHERE description ILIKE $1`,
-    [`%#${hashtag}%`])
+    [`%#${hashtag} %`])
 }
