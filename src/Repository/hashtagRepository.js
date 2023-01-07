@@ -10,3 +10,12 @@ export function getPostByHashtagRepository (hashtag) {
     description ILIKE $2`,
     [`%#${hashtag} %`, `%#${hashtag}`])
 }
+
+
+export function getTopTrendsRepository () {
+    return connectionDb.query(`SELECT COUNT(trend), trend
+    FROM trends
+    GROUP BY (trend)
+    ORDER BY count(trend) DESC
+    LIMIT 10`);
+}

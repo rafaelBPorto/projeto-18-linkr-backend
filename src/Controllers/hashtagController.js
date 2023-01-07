@@ -1,4 +1,4 @@
-import {  getPostByHashtagRepository } from "../Repository/hashtagRepository.js";
+import {  getPostByHashtagRepository, getTopTrendsRepository } from "../Repository/hashtagRepository.js";
 
 
 export async function getPostByHashtagController (req, res) {
@@ -12,6 +12,19 @@ export async function getPostByHashtagController (req, res) {
        }
        return res.send(response.rows);
     } catch (err) {
+        console.log(err);
+        return res.sendStatus(500);
+    }
+}
+
+export async function getTopTrendsController (req, res) {
+
+    try {
+        const response = await getTopTrendsRepository();
+
+        return res.send(response.rows);
+
+    } catch(err) {
         console.log(err);
         return res.sendStatus(500);
     }
