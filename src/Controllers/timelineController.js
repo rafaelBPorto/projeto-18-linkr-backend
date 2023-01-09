@@ -1,9 +1,14 @@
+import getPostTimeline from "../Repository/getPostsTimelineRepository.js";
 import insertPublishPost from "../Repository/publishPostRepository.js";
 
 export async function timelineController(req, res) {
-    const session = res.locals.session
-
-    res.send(session);
+    const session = res.locals.session;
+    try {
+        const posts = await getPostTimeline();
+        res.send(posts.rows);
+    } catch (error) {
+        res.status(500).send(error.message)
+    }
 }
 
 export async function publishPostController(req, res) {
