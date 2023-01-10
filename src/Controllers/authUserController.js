@@ -17,20 +17,23 @@ export async function signUpController(req, res) {
 
 
 export async function signInController( req, res) {
-    const { id } = res.locals;
+    const { id, name, photo } = res.locals.userInfo;
     const token = nanoid();
+
 
     try {
         const userSessionExists = await userSession(id);
+        const userInfo = {id: id, name: name, photo: photo, token: token}
 
         if (!userSessionExists.rows[0]) {
           await createUserSession(id, token);
     
-          return res.status(200).send(token);
+          return res.status(200).send(userInfo);
         }
     
         await updateUserSession(id, token);
-        return res.status(200).send(token);
+  
+        return res.status(200).send(userInfo);
       } catch (err) {
         console.log(err);
         return res.sendStatus(500);

@@ -17,5 +17,5 @@ export function getTopTrendsRepository () {
     FROM trends
     GROUP BY (trend)
     ORDER BY count(trend) DESC
-    LIMIT 10`);
+    LIMIT 100`);
 }
