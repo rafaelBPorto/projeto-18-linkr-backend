@@ -3,7 +3,7 @@ import { search } from "../Controllers/search.controllers.js";
 
 const router = Router();
 
-router.get("/timeline/search", search)
+router.get("/search", search)
 
 
 export default router;
