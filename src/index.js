@@ -14,8 +14,8 @@ app.use(express.json());
 app.use(cors());
 
 app.use(authUserRoute);
-app.use(timelineRoute);
 app.use(hashtagRoute);
+app.use(timelineRoute);
 app.use(searchRoute);
 app.use(likeRoute);
 

@@ -49,7 +49,7 @@ export async function signInMiddleware(req, res, next) {
     if (!passwordIsCorrect) {
       return res.status(401).send("Senha incorreta");
     }
-    res.locals.id = userExists.rows[0].id;
+    res.locals.userInfo = userExists.rows[0];
     next();
   } catch (err) {
     console.log(err);
