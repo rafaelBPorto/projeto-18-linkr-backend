@@ -2,7 +2,7 @@ import { deletePostLike, postLike } from "../Repository/likeRepository.js";
 
 
 export async function postLikeController(req, res) {
-
+    console.log(res.locals);
     const {post_id, user_id} = res.locals;
 
     
@@ -18,6 +18,7 @@ export async function postLikeController(req, res) {
 
 export async function deleteLikeController(req, res) {
 
+    console.log(res.locals);
     const {post_id, user_id} = res.locals;
 
     console.log(post_id)
