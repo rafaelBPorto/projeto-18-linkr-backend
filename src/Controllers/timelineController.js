@@ -1,4 +1,5 @@
 import linkMetaData from "../helpers/linkMetaData.js";
+import deletePostDB from "../Repository/deletePostRepository.js";
 import getPostTimeline from "../Repository/getPostsTimelineRepository.js";
 import insertPublishPost from "../Repository/publishPostRepository.js";
 
@@ -27,4 +28,20 @@ export async function publishPostController(req, res) {
     } catch (error) {
         return res.status(500).send(error.message);
     }
+}
+
+export async function deletePostController(req, res){
+    const {postId} = req.body;
+    const userId = res.locals.session.user_id
+    
+    try {
+        const unauthorized = await deletePostDB(postId, userId)
+        if(unauthorized){
+            return res.sendStatus(401)
+        }
+    } catch (error) {
+        res.status(500).send(error.message)
+    }
+
+    res.sendStatus(201);
 }
