@@ -1,22 +1,10 @@
 import connectionDb from "../Database/db.js";
 
-// export function getPostByHashtagRepository (hashtag) {
-//     return connectionDb.query(`SELECT
-//     posts.*,
-//     users.name, users.photo
-//     ARRAY_AGG(likes.user_id)
-//     FROM posts
-//     JOIN users ON users.id = posts.user_id
-//     JOIN likes ON likes.post_id = posts.id
-//     WHERE description ILIKE $1 OR
-//     description ILIKE $2`,
-//     [`%#${hashtag} %`, `%#${hashtag}`])
-// }
 
 export function getPostByHashtagRepository (hashtag) {
     return connectionDb.query(`
     select posts.*,
-    ARRAY_AGG(likes.user_id)  AS "likedBy" ,
+    JSON_AGG(likes.user_id)  AS "likedById",
     users.name, users.photo from posts
     LEFT JOIN likes ON posts.id = likes.post_id
     JOIN users ON posts.user_id = users.id
@@ -34,6 +22,9 @@ export function getTopTrendsRepository () {
     FROM trends
     GROUP BY (trend)
     ORDER BY count(trend) DESC
-    LIMIT 100`);
+    LIMIT 10`);
 }
+
+
+
 
