@@ -31,7 +31,8 @@ export async function publishPostController(req, res) {
 }
 
 export async function deletePostController(req, res){
-    const {postId} = req.body;
+    const {postId} = req.params;
+    console.log(postId)
     const userId = res.locals.session.user_id
     
     try {

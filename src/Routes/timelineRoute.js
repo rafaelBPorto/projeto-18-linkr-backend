@@ -10,6 +10,6 @@ router.get("/timeline", authorizationToken, timelineController);
 
 router.post("/publish-post", authorizationToken, publishPostValidation, publishPostController)
 
-router.delete("/delete-post", authorizationToken, deletePostController)
+router.delete("/delete-post/:postId", authorizationToken, deletePostController)
 
 export default router;
