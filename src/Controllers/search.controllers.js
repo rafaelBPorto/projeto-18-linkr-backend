@@ -15,11 +15,11 @@ export async function search(req,res){
     }
 }
 
-// export async function getAllUsersController(req, res) {
-//     try {
-//         const users =  await getAllUsersRepository();
-//         return res.status(200).send(users);
-//     } catch (err) {
-//         return res.sendStatus(500);
-//     }
-// }
+export async function getAllUsersController(req, res) {
+    try {
+        const users =  await getAllUsersRepository();
+        return res.status(200).send(users);
+    } catch (err) {
+        return res.sendStatus(500);
+    }
+}
