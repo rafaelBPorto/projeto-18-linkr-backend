@@ -12,6 +12,7 @@ export function getPostByHashtagRepository (hashtag) {
     posts.description ILIKE $2
     GROUP by users.id,users.name, users.email, users.photo, users.password, users.created_at,
     posts.id, posts.link, posts.description, posts.user_id, posts.created_at, posts.link_title, posts.link_description, posts.link_url, posts.link_image
+    ORDER BY posts.id DESC LIMIT 20
 ;`,
     [`%#${hashtag} %`, `%#${hashtag}`])
 }
