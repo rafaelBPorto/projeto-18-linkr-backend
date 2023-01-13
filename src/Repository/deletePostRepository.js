@@ -7,6 +7,7 @@ export default async function deletePostDB(postId, userId){
     if(authUser.rows[0].user_id === userId){
         await connectionDb.query(`DELETE FROM likes WHERE post_id = $1;`, [postId]);
         await connectionDb.query(`DELETE FROM posts WHERE id = $1 and user_id=$2;`, [postId, userId]);
+        await connectionDb.query(`DELETE FROM trends WHERE post_id = $1;`, [postId]);
         
         return false
     }

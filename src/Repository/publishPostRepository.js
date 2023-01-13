@@ -10,10 +10,12 @@ export default async function insertPublishPost(userId, link, description, metaD
             VALUES( $1, $2, $3, $4, $5, $6, $7)
         `, [link, description, userId, linkTitle, linkDescription, linkUrl, linkImage]);
 
+        const postId = await connectionDb.query(`SELECT id FROM posts ORDER BY id DESC LIMIT 1`)
+        
         const trends = description.match(/#\w+/g);
         console.log(trends)
         if (trends) {
-            await trends.map((i) => connectionDb.query('INSERT INTO trends (trend) VALUES ($1)', [i]))
+            await trends.map((i) => connectionDb.query('INSERT INTO trends (trend, post_id) VALUES ($1, $2)', [i, postId.rows[0].id]))
         }
     } catch (error) {
         return error.message;
